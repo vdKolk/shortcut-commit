@@ -1,6 +1,7 @@
 import os
 import re
 import requests
+from security_def import Security
 
 
 class Shortcut:
@@ -15,9 +16,12 @@ class Shortcut:
             f'{self.SHORTCUT_BASE_URL}/stories/{Shortcut.__get_story_number()}',
             headers={
                 "Content-Type": "application/json",
-                "Shortcut-Token": "6460e5f6-5485-4ee2-bd37-012856e91496"
+                "Shortcut-Token": Security().get_shortcut_token()
             }
         )
+
+        if res.json()['name'] is None:
+            raise LookupError('The story name is not set')
 
         return res.json()['name']
 
