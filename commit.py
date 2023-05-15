@@ -2,10 +2,7 @@
 
 from shortcut_def import Shortcut
 
-scNumber = Shortcut.get_story_number()
+shortcut = Shortcut('test')
 
-if not scNumber:
-    raise LookupError('The shortcut number was not found, check cwd and branch name')
-else:
-    # for now just print number
-    print(scNumber)
+scName = shortcut.get_shortcut_story_title()
+print(scName)
