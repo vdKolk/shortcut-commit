@@ -5,6 +5,7 @@ from security_def import Security
 
 
 class Shortcut:
+    """Class providing interaction abilities to Shortcut via their API"""
 
     SHORTCUT_BASE_URL = 'https://api.app.shortcut.com/api/v3'
 
@@ -14,7 +15,8 @@ class Shortcut:
             headers={
                 "Content-Type": "application/json",
                 "Shortcut-Token": Security().get_shortcut_token()
-            }
+            },
+            timeout=60,
         )
 
         if res.json()['name'] is None:
@@ -26,6 +28,6 @@ class Shortcut:
     def get_story_number() -> int | bool:
         stream = os.popen(f'git -C {os.getcwd()} rev-parse --abbrev-ref HEAD')
 
-        matches = re.findall('\d{5}', stream.read())
+        matches = re.findall(r'\d{5}', stream.read())
 
         return matches[0] if len(matches) == 1 else False

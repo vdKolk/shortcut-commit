@@ -3,6 +3,8 @@ from shortcut_def import Shortcut
 
 
 class GitHub:
+    """Class providing interaction abilities to GitHub via the CLI"""
+
     @staticmethod
     def __add_all_to_commit() -> None:
         os.system(f'git -C {os.getcwd()} add .')
@@ -16,3 +18,8 @@ class GitHub:
 
         os.system(f'git -C {os.getcwd()} commit -m "Fixes [sc-{story_number}] {title}" --no-verify')
         os.system(f'git -C {os.getcwd()} push -u origin feature-develop/sc-{story_number}')
+
+    @staticmethod
+    def amend_commit() -> None:
+        os.system(f'git -C {os.getcwd()} commit --amend --no-verify')
+        os.system(f'git -C {os.getcwd()} push -f')
