@@ -4,8 +4,8 @@ import os
 class Security:
     """Class providing interaction abilities to the stored security details"""
 
-    def __init__(self, keys=None) -> None:
-        self.keys = keys
+    def __init__(self, key=None) -> None:
+        self.key = key
 
     def __get_tokens_from_storage(self) -> None:
         with open(
@@ -13,19 +13,16 @@ class Security:
             'r',
             encoding='UTF-8'
         ) as file:
-            self.keys = file.readline().split(';')
+            self.key = file.readline()
             file.close()
 
-    def __get_key(self, index) -> str:
+    def __get_key(self) -> str:
         self.__get_tokens_from_storage()
 
-        if self.keys[index] is None:
+        if self.key is None:
             raise LookupError('One of the keys is not set, run setup.py')
 
-        return self.keys[index]
+        return self.key
 
     def get_shortcut_token(self) -> str:
-        return self.__get_key(1)
-
-    def get_github_token(self) -> str:
-        return self.__get_key(0)
+        return self.__get_key()

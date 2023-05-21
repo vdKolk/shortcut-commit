@@ -3,7 +3,12 @@
 import sys
 from github_def import GitHub
 
-if sys.argv[1] == '-a':
-    GitHub.amend_commit()
-else:
-    GitHub.create_commit()
+
+try:
+    if sys.argv[1] == '-a':
+        GitHub.amend_commit()
+        sys.exit(0)
+except IndexError:
+    pass
+
+GitHub.create_commit()
