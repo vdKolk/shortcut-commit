@@ -16,7 +16,7 @@ class GitHub:
 
         GitHub.__add_all_to_commit()
 
-        os.system(f'git -C {os.getcwd()} commit -m "Fixes [sc-{story_number}] {title}"')
+        os.system(f'git -C {os.getcwd()} commit -m "[sc-{story_number}] {title}"')
         os.system(f'git -C {os.getcwd()} push -u origin feature-ops/sc-{story_number}')
 
     @staticmethod
