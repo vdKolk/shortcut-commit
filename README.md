@@ -35,3 +35,14 @@ function checkout {
     git checkout feature-ops/sc-"$1"
 }
 ```
+
+### Commands needed
+```
+python3 -m pip instal
+
+branch 12345 // sc number (a new branch (hard overwrite))
+checkout 12345 // a existing pr
+scc // shortcut commit
+scca // shortcut commit amend
+```
+
